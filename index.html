@@ -108,15 +108,20 @@ title: Black Whole Coffee | Pre-Order
 <script>
   function checkCutoff() {
     const athensTime = new Date().toLocaleString("en-US", {timeZone: "Europe/Athens"});
-    const hour = new Date(athensTime).getHours();
+    const now = new Date(athensTime);
+    const hour = now.getHours();
     const bar = document.getElementById('status-bar');
 
+    // If it is between 00:00 and 06:00 AM, it's clearly for the 'next' batch
+    // We can also make it more dynamic based on your actual roasting schedule
     if (hour >= 0) {
-      bar.innerText = "Order now for tomorrow's batch";
-      bar.style.background = "#2196f3"; // Change to blue when ordering for next day
+      bar.innerText = "Current orders are for TOMORROW'S batch";
+      bar.style.background = "var(--blue)"; 
     } else {
-      bar.innerText = "Daily pre-orders close at 00:00 Greek Time";
+      bar.innerText = "Order before 00:00 for next-day delivery";
+      bar.style.background = "var(--orange)";
     }
   }
   checkCutoff();
+  setInterval(checkCutoff, 60000); // Check every minute
 </script>
