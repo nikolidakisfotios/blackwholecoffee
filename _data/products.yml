@@ -1,27 +1,27 @@
-# Coffee Selection
+# Coffee Selection - In-House Production
 coffee:
-  - id: "black_whole_signature"
+  - id: "black_signature"
     name: "Black Whole Signature"
     price: 3.50
     image: "/assets/images/black.png"
-    description: "Deep, dark, and essential. Our signature high-performance roast."
-  
+    description: "Our darkest orbit. High-performance caffeine with a bold finish."
+
   - id: "medium_orbit"
     name: "Medium Orbit"
     price: 3.50
     image: "/assets/images/medium.png"
-    description: "Balanced acidity with notes of caramel and toasted nuts."
+    description: "Balanced notes of caramel and roasted nuts for a steady morning."
 
-  - id: "sweet_event_horizon"
+  - id: "sweet_horizon"
     name: "Sweet Event Horizon"
     price: 3.80
     image: "/assets/images/sweet.png"
-    description: "A smoother, lighter profile for a gentle morning pull."
+    description: "A smoother, lighter profile for a gentle transition into the day."
 
-# Edibles
+# Edibles - Third-Party Producer
 edibles:
-  - id: "turkey_sandwich"
+  - id: "artisan_turkey"
     name: "Artisan Turkey Sandwich"
     price: 5.50
-    image: "/assets/images/sandwich.png" # Placeholder name
-    description: "Freshly made daily by our local partner."
+    producer: "Third-Party Kitchen"
+    description: "Freshly prepared daily by our local partners."
