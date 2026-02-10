@@ -1,0 +1,17 @@
+title: Black Whole Coffee
+email: info@blackwholecoffee.com
+description: >- # this means to ignore newlines until "baseurl"
+  High-performance coffee for the Greek market. 
+  Pre-orders only. Midnight cutoff for next-day delivery.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://www.blackwholecoffee.com"
+
+# Greek Market Settings
+timezone: Europe/Athens
+locale: el_GR
+
+# Build settings
+remote_theme: jekyll/minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
