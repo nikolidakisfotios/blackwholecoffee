@@ -162,14 +162,66 @@ title: Black Whole Coffee | Dashboard
 </style>
 
 <nav>
-  <div class="nav-logo"><img src="/assets/images/logo.png" alt="Black Whole Coffee"></div>
-  <div class="nav-links">
-    <a href="#">Our Mission</a>
-    <a href="#">Our Coffee</a>
-    <a href="#">Our Food</a>
-    <a href="#">Contact</a>
+  <div class="nav-left">
+    <div class="nav-logo"><img src="/assets/images/logo.png" alt="Black Whole Coffee"></div>
+    <div class="nav-links">
+      <a href="#">Our Mission</a>
+      <a href="#">Our Coffee</a>
+      <a href="#">Our Food</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <button class="account-btn" onclick="alert('Login System Coming Soon!')">Login</button>
+    <button class="account-btn signup" onclick="alert('Sign Up System Coming Soon!')">Sign Up</button>
   </div>
 </nav>
+
+<style>
+  /* Added styles for the new navigation layout */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background: var(--void);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-right {
+    display: flex;
+    gap: 15px;
+  }
+
+  .account-btn {
+    background: transparent;
+    border: 1px solid var(--text);
+    color: var(--text);
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: 0.3s;
+  }
+
+  .account-btn.signup {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+    font-weight: bold;
+  }
+
+  .account-btn:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+  }
+</style>
 
 <div class="layout-wrapper">
   <main>
