@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Black Whole Coffee | Configuration
+title: Black Whole Coffee | Dashboard
 ---
 
 <style>
@@ -9,6 +9,8 @@ title: Black Whole Coffee | Configuration
     --starlight: #121212;
     --orange: #ff5722;
     --blue: #2196f3;
+    --red: #f44336;
+    --green: #4caf50;
     --text: #f4f4f4;
   }
 
@@ -18,204 +20,237 @@ title: Black Whole Coffee | Configuration
     color: var(--text);
     font-family: 'Inter', sans-serif;
     margin: 0;
-    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
-  .banner {
-    background: var(--orange);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+  /* TOP NAVIGATION */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background: var(--void);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* The White Line */
   }
 
-  header {
-    text-align: center;
-    padding: 40px 20px;
-  }
+  .nav-logo img { width: 100px; }
 
-  header img {
-    width: 180px;
-    background: transparent; /* Ensures logo has no box */
-  }
-
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-
-  .step-title {
-    margin-bottom: 30px;
-    font-weight: 300;
-    letter-spacing: 2px;
+  .nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 0.9rem;
     text-transform: uppercase;
-    color: var(--blue);
+    letter-spacing: 1px;
+    transition: 0.3s;
   }
 
-  /* Grid Layout for Icons */
-  .selection-grid {
+  .nav-links a:hover { color: var(--blue); }
+
+  /* MAIN CONTENT LAYOUT */
+  .layout-wrapper {
+    display: flex;
+    flex: 1;
+  }
+
+  main {
+    flex: 3;
+    padding: 20px 40px;
+  }
+
+  /* RIGHT SIDEBAR CART */
+  aside {
+    flex: 1;
+    max-width: 350px;
+    background: rgba(0,0,0,0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* PRODUCT ROWS */
+  .menu-row {
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .row-cold { background: rgba(33, 150, 243, 0.05); border-left: 5px solid var(--blue); }
+  .row-hot { background: rgba(244, 67, 54, 0.05); border-left: 5px solid var(--red); }
+  .row-food { background: rgba(76, 175, 80, 0.05); border-left: 5px solid var(--green); }
+
+  .row-title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
   }
 
-  .option-card {
-    background: rgba(255, 255, 255, 0.03);
+  .item-card {
+    background: rgba(255,255,255,0.02);
     border: 1px solid #222;
-    border-radius: 15px;
-    padding: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .item-card img { width: 100%; height: 120px; object-fit: contain; margin-bottom: 10px; }
+
+  /* CONTROLS */
+  .price-tag { color: var(--orange); font-weight: bold; margin: 10px 0; }
+  
+  .sugar-label { font-size: 0.7rem; color: #888; margin-top: 10px; }
+  
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--blue);
+    margin: 10px 0;
+  }
+
+  .qty-input {
+    width: 50px;
+    background: #222;
+    border: 1px solid #444;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+  .add-btn {
+    background: var(--blue);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
     cursor: pointer;
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .option-card:hover {
-    border-color: var(--blue);
-    background: rgba(33, 150, 243, 0.1);
-  }
-
-  .option-card img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    background: transparent; /* No white box */
-    margin-bottom: 10px;
-  }
-
-  .option-card span {
-    font-size: 0.9rem;
     font-weight: bold;
   }
 
-  .hidden { display: none; }
+  .add-btn:hover { opacity: 0.8; }
 
-  /* Navigation */
-  .btn-back {
-    margin-top: 40px;
-    background: transparent;
-    border: 1px solid #444;
-    color: #888;
-    padding: 10px 20px;
-    border-radius: 20px;
+  /* CART STYLING */
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 5px;
+  }
+
+  #checkout-btn {
+    background: var(--orange);
+    border: none;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
     cursor: pointer;
+    margin-top: auto;
   }
 </style>
 
-<div class="banner" id="status-bar">Syncing Greek Time...</div>
+<nav>
+  <div class="nav-logo"><img src="/assets/images/logo.png" alt="Black Whole Coffee"></div>
+  <div class="nav-links">
+    <a href="#">Our Mission</a>
+    <a href="#">Our Coffee</a>
+    <a href="#">Our Food</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
 
-<header>
-  <img src="/assets/images/logo.png" alt="Black Whole Coffee">
-</header>
+<div class="layout-wrapper">
+  <main>
+    <section class="menu-row row-cold">
+      <div class="row-title" style="color: var(--blue);">Cold Coffee Selection</div>
+      <div class="grid" id="cold-grid">
+        </div>
+    </section>
 
-<div class="container">
-  
-  <div id="step-temp">
-    <h2 class="step-title">1. Choose Temperature</h2>
-    <div class="selection-grid">
-      <div class="option-card" onclick="showDrinks('cold')">
-        <img src="/assets/images/cold.png" alt="Cold Coffee">
-        <span>COLD</span>
-      </div>
-      <div class="option-card" onclick="showDrinks('hot')">
-        <img src="/assets/images/hot.png" alt="Hot Coffee">
-        <span>HOT</span>
-      </div>
+    <section class="menu-row row-hot">
+      <div class="row-title" style="color: var(--red);">Hot Coffee Selection</div>
+      <div class="grid" id="hot-grid">
+        </div>
+    </section>
+
+    <section class="menu-row row-food">
+      <div class="row-title" style="color: var(--green);">Artisan Food</div>
+      <div class="grid" id="food-grid">
+        </div>
+    </section>
+  </main>
+
+  <aside>
+    <h3>Your Orbit</h3>
+    <div id="cart-display">
+      <p style="color:#555">Orbit is empty...</p>
     </div>
-  </div>
-
-  <div id="step-drinks" class="hidden">
-    <h2 class="step-title" id="drink-title">2. Choose Drink</h2>
-    <div class="selection-grid" id="drink-options">
-      </div>
-    <button class="btn-back" onclick="restart()">← Start Over</button>
-  </div>
-
-  <div id="step-sugar" class="hidden">
-    <h2 class="step-title">3. Amount of Sugar</h2>
-    <div class="selection-grid">
-      <div class="option-card" onclick="finalize('Black')">
-        <img src="/assets/images/black.png" alt="Black">
-        <span>BLACK</span>
-      </div>
-      <div class="option-card" onclick="finalize('Medium')">
-        <img src="/assets/images/medium.png" alt="Medium">
-        <span>MEDIUM</span>
-      </div>
-      <div class="option-card" onclick="finalize('Sweet')">
-        <img src="/assets/images/sweet.png" alt="Sweet">
-        <span>SWEET</span>
-      </div>
-    </div>
-    <button class="btn-back" onclick="showSection('step-drinks')">← Back to Drinks</button>
-  </div>
-
-  <div id="step-final" class="hidden">
-    <h2 class="step-title">Review Order</h2>
-    <div id="order-summary" class="price" style="font-size: 1.5rem; margin: 30px 0;"></div>
-    <div class="price">Price: € --</div>
-    <button class="btn" onclick="addToOrbit()" style="background: var(--orange); padding: 15px 40px; border-radius: 30px; border:none; color:white; font-weight:bold; cursor:pointer;">Add to Orbit</button>
-    <br>
-    <button class="btn-back" onclick="restart()">← Cancel</button>
-  </div>
-
+    <div id="cart-total" style="margin-top:20px; font-weight:bold; font-size:1.2rem;">Total: € 0.00</div>
+    <button id="checkout-btn">Proceed to Checkout</button>
+  </aside>
 </div>
 
 <script>
-  const drinks = {
-    cold: ['Freddo Espresso Single', 'Freddo Espresso Double', 'Freddo Cappuccino Single', 'Freddo Cappuccino Double', 'Cold Chocolate'],
-    hot: ['Espresso Single', 'Espresso Double', 'Ristretto', 'Lungo', 'Americano', 'Cappuccino Single', 'Cappuccino Double', 'Cappuccino Quad', 'Latte', 'Flat White', 'Macchiato', 'Cortado', 'Mocha', 'Hot Chocolate', 'Hot Chocolate White']
+  const menuData = {
+    cold: ['Freddo Espresso Single', 'Freddo Espresso Double', 'Freddo Cappuccino Single', 'Cold Chocolate'],
+    hot: ['Espresso Single', 'Espresso Double', 'Cappuccino Single', 'Latte', 'Flat White'],
+    food: ['Turkey Artisan Sandwich', 'Greek Breakfast Wrap', 'Protein Bowl']
   };
 
-  let selectedTemp = '';
-  let selectedDrink = '';
+  const sugarLevels = ["Black", "M. Black", "Medium", "M. Sweet", "Sweet"];
 
-  function showSection(id) {
-    ['step-temp', 'step-drinks', 'step-sugar', 'step-final'].forEach(s => document.getElementById(s).classList.add('hidden'));
-    document.getElementById(id).classList.remove('hidden');
-  }
-
-  function showDrinks(temp) {
-    selectedTemp = temp;
-    const container = document.getElementById('drink-options');
-    container.innerHTML = '';
-    
-    drinks[temp].forEach(drink => {
-      container.innerHTML += `
-        <div class="option-card" onclick="selectDrink('${drink}')">
-          <img src="/assets/images/logo.png" style="opacity:0.3"> <span>${drink}</span>
-        </div>`;
+  function initMenu() {
+    ['cold', 'hot', 'food'].forEach(type => {
+      const grid = document.getElementById(`${type}-grid`);
+      menuData[type].forEach(name => {
+        grid.innerHTML += `
+          <div class="item-card">
+            <img src="/assets/images/logo.png" style="opacity:0.2">
+            <div style="font-weight:bold; min-height:40px;">${name}</div>
+            <div class="price-tag">€ --</div>
+            
+            <div class="sugar-label">Sugar: <span id="sugar-val-${name.replace(/\s/g, '')}">Medium</span></div>
+            <input type="range" min="0" max="4" value="2" 
+              oninput="document.getElementById('sugar-val-${name.replace(/\s/g, '')}').innerText = sugarLevels[this.value]">
+            
+            <div style="margin-top:10px;">
+              Qty: <input type="number" class="qty-input" value="1" min="1">
+            </div>
+            
+            <button class="add-btn" onclick="addToCart('${name}')">Add to Order</button>
+          </div>
+        `;
+      });
     });
-    
-    document.getElementById('drink-title').innerText = `2. ${temp.toUpperCase()} OPTIONS`;
-    showSection('step-drinks');
   }
 
-  function selectDrink(drink) {
-    selectedDrink = drink;
-    showSection('step-sugar');
+  let cart = [];
+  function addToCart(name) {
+    cart.push({name, price: 0}); // Price is 0 for now as requested
+    renderCart();
   }
 
-  function finalize(sugar) {
-    const summary = document.getElementById('order-summary');
-    summary.innerHTML = `${selectedDrink}<br><small style="color:var(--orange)">Sugar: ${sugar}</small>`;
-    showSection('step-final');
+  function renderCart() {
+    const display = document.getElementById('cart-display');
+    display.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <span>${item.name}</span>
+        <span>€ --</span>
+      </div>
+    `).join('');
   }
 
-  function restart() {
-    showSection('step-temp');
-  }
-
-  // Placeholder for your orbit logic
-  function addToOrbit() {
-    alert("Order added to Orbit! Ready for Stripe integration.");
-    restart();
-  }
+  initMenu();
 </script>
