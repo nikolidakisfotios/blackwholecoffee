@@ -208,6 +208,38 @@ title: Black Whole Coffee | Dashboard
   </aside>
 
 <script>
+  // 1. THE PRICE BOOK - Update your prices here
+  const prices = {
+    // Cold Prices
+    'Freddo Espresso Single': 2.50,
+    'Freddo Espresso Double': 3.20,
+    'Freddo Cappuccino Single': 2.80,
+    'Freddo Cappuccino Double': 3.50,
+    'Cold Chocolate': 3.00,
+
+    // Hot Prices
+    'Espresso Single': 1.80,
+    'Espresso Double': 2.20,
+    'Ristretto': 1.80,
+    'Lungo': 1.80,
+    'Americano': 2.50,
+    'Cappuccino Single': 2.80,
+    'Cappuccino Double': 3.20,
+    'Cappuccino Quad': 4.50,
+    'Latte': 3.50,
+    'Flat White': 3.50,
+    'Macchiato': 2.00,
+    'Cortado': 2.50,
+    'Mocha': 3.80,
+    'Hot Chocolate': 3.00,
+    'Hot Chocolate White': 3.20,
+
+    // Food Prices
+    'Turkey Artisan Sandwich': 4.50,
+    'Greek Breakfast Wrap': 4.00,
+    'Protein Bowl': 5.50
+  };
+
   const menuData = {
     cold: ['Freddo Espresso Single', 'Freddo Espresso Double', 'Freddo Cappuccino Single', 'Freddo Cappuccino Double', 'Cold Chocolate'],
     hot: ['Espresso Single', 'Espresso Double', 'Ristretto', 'Lungo', 'Americano', 'Cappuccino Single', 'Cappuccino Double', 'Cappuccino Quad', 'Latte', 'Flat White', 'Macchiato', 'Cortado', 'Mocha', 'Hot Chocolate', 'Hot Chocolate White'],
@@ -222,11 +254,14 @@ title: Black Whole Coffee | Dashboard
       const grid = document.getElementById(`${type}-grid`);
       menuData[type].forEach(name => {
         const safeId = name.replace(/\s/g, '');
+        // We look up the price from our Price Book. If not found, show --
+        const displayPrice = prices[name] ? `€ ${prices[name].toFixed(2)}` : '€ --';
+        
         grid.innerHTML += `
           <div class="item-card">
             <img src="/assets/images/logo.png" style="opacity:0.2">
             <div style="font-weight:bold; min-height:40px;">${name}</div>
-            <div class="price-tag">€ --</div>
+            <div class="price-tag">${displayPrice}</div>
             
             <div class="sugar-label">Sugar: <span id="sugar-val-${safeId}" style="color:var(--orange)">Medium</span></div>
             <input type="range" id="range-${safeId}" min="0" max="4" value="2" 
@@ -248,9 +283,10 @@ title: Black Whole Coffee | Dashboard
     const sugarIdx = document.getElementById(`range-${safeId}`).value;
     const sugarText = sugarLevels[sugarIdx];
     const quantity = parseInt(document.getElementById(`qty-${safeId}`).value);
-    const pricePerItem = 0.00; // Placeholder until you finalize prices
+    
+    // Pull price from Price Book, default to 0 if missing
+    const pricePerItem = prices[name] || 0;
 
-    // Find if item with same name AND sugar already exists to stack them
     const existingItem = cart.find(item => item.name === name && item.sugar === sugarText);
 
     if (existingItem) {
@@ -263,7 +299,6 @@ title: Black Whole Coffee | Dashboard
         price: pricePerItem
       });
     }
-
     renderCart();
   }
 
